@@ -1,0 +1,7 @@
+{
+  "name": "ionic-biblioteca-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

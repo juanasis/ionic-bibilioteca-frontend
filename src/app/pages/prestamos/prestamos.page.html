@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>prestamos</ion-title>
+    <ion-buttons slot= "start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-title>libros prestados</ion-title>
+  <ul class="list-group ">
+    <h2></h2>
+    <li 
+    *ngFor="let prestamo of prestamos" 
+    class="list-group-item list-group-item-action"
+    (click)="openForEdit(prestamo)" 
+    [class.active]="prestamo == selectedprestamo"
+    >
+   <span class="badge badge-primary">{{prestamo.id}} </span> Libro:
+   {{prestamo.libroid.titulo}} ,prestado a {{prestamo.prestamoid.personaid.apellido}} {{prestamo.prestamoid.personaid.nombre}}
+ </li>
+</ul>
+ 
+</ion-content>

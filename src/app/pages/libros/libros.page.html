@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>libros</ion-title>
+    <ion-buttons slot= "start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ul class="list-group ">
+    <h2></h2>
+    <li 
+    *ngFor="let libro of libros" 
+    class="list-group-item list-group-item-action"
+    (click)="openForEdit(libro)" 
+    [class.active]="libro == selectedLibro"
+    >
+   <span class="badge badge-primary">{{libro.id}} </span> {{libro.titulo}} 
+ </li>
+</ul>
+<div class="card  mt-4">
+  <div class ="card-body">
+      <div class="card-title">
+          Inserta un nuevo libro
+      </div>
+      <div class="form-group">
+          <input type="text" [(ngModel)]="selectedLibro.titulo" placeholder="Escribe un titulo" class="form-control">
+      </div>
+      <div class="form-group">
+          <input type="text"[(ngModel)]="selectedLibro.cantidadpaginas" placeholder="Indica la cantidad de paginas" class="form-control">
+      </div>
+      <div class="form-group">
+          <input type="text" [(ngModel)]="selectedLibro.fechapublicacion" placeholder="Indica la fecha de publicacion" class="form-control">
+      </div>
+      <button  *ngIf="selectedLibro !== null" (click)="addOnEdit()" class="btn btn-primary">
+          Guardar
+      </button>
+      <button 
+      *ngIf="selectedLibro.id !== 0"
+      class="btn btn-danger" 
+      (click)="delete()"       >
+          Borrar
+      </button>
+      <button 
+      *ngIf="selectedLibro.id !== 0"
+      class="btn btn-primary" 
+      (click)="nuevoPrestamo()"       >
+          Prestar
+      </button>
+      <button class="btn btn-secondary"           
+      (click)="limpiar()"    >
+         Limpiar
+      </button>
+  </div>
+</div>
+</ion-content>
