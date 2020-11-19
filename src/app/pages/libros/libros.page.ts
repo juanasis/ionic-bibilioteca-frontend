@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/home/models/libro';
 import { Persona } from 'src/app/home/models/persona';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from 'src/app/modal/modal/modal.page';
 
 @Component({
   selector: 'app-libros',
@@ -92,12 +94,13 @@ export class LibrosPage implements OnInit {
 
   }
 
-  nuevoPrestamo(){
-    this.http.get("http://localhost:8080/personas",{responseType: 'json'}).subscribe(
-      (resp:any) =>{
-      this.personas = resp.data;
-      console.log("Seleccione una persona");
-      console.log(this.personas); })
+ 
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      //cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
   limpiar(){
     
@@ -106,7 +109,7 @@ export class LibrosPage implements OnInit {
                            "cantidadpaginas":0,
                            "fechapublicacion":""};
   }
-  constructor(public http: HttpClient ) { }
+  constructor(public http: HttpClient , public modalController:ModalController) { }
 
   ngOnInit(): void {
     this.http.get("http://localhost:8080/libros",{responseType: 'json'}).subscribe(

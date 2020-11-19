@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Seleccione una Persona</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ul class="list-group ">
+    <h2></h2>
+    <li 
+    *ngFor="let persona of personas" 
+    class="list-group-item list-group-item-action"
+    (click)="openForEdit(persona)" 
+    [class.active]="persona == selectedpersona"
+    >
+   <span class="badge badge-primary">{{persona.id}} </span>
+   <span>{{persona.nombre}}</span> {{persona.apellido }}
+   
+ </li>
+ <button 
+   *ngIf="selectedPersona.id !== 0"
+   class="btn btn-primary" 
+   (click)=realizarPrestamo()
+   >
+       Prestar  
+   </button>
+</ul>
+
+
+</ion-content>
